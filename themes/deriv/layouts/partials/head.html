@@ -35,10 +35,12 @@
     }
     rudderanalytics.load(RUDDERSTACK_KEY, RUDDERSTACK_URL);
 
+    rudderanalytics.track("Simple track call");
+
 
     document.onload = function () {
         document.querySelector('#signup_redirect_cta').addEventListener('click', function () {
-            rudderanalytics.track("Signup Redirect CTA Clicked");
+            rudderanalytics.track("Simple track call");
         });
     };
 
