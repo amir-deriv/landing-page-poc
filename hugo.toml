@@ -1,0 +1,7 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'deriv'
+[params]
+  RUDDERSTACK_URL = "https://deriv-dataplane.rudderstack.com"
+  RUDDERSTACK_KEY = "1lN3tsFD2nruGFgM5F074DC2hMB"

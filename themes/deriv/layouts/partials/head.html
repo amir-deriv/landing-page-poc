@@ -1,0 +1,46 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+{{ partialCached "head/scss.html" . }}
+{{ partialCached "head/js.html" . }}
+
+
+<script>
+    var RUDDERSTACK_URL = "{{ .Site.Params.RUDDERSTACK_URL }}";
+    var RUDDERSTACK_KEY = "{{ .Site.Params.RUDDERSTACK_KEY }}";
+
+    rudderanalytics = window.rudderanalytics = [];
+    var methods = [
+        "load",
+        "page",
+        "track",
+        "identify",
+        "alias",
+        "group",
+        "ready",
+        "reset",
+        // "requireIntegration",
+        "setAnonymousId",
+        "getAnonymousId",
+    ];
+    for (var i = 0; i < methods.length; i++) {
+        var method = methods[i];
+        rudderanalytics[method] = (function (methodName) {
+            return function () {
+                rudderanalytics.push(
+                    [methodName].concat(Array.prototype.slice.call(arguments))
+                );
+            };
+        })(method);
+    }
+    rudderanalytics.load(RUDDERSTACK_KEY, RUDDERSTACK_URL);
+
+
+    document.onload = function () {
+        document.querySelector('#signup_redirect_cta').addEventListener('click', function () {
+            rudderanalytics.track("Signup Redirect CTA Clicked");
+        });
+    };
+
+</script>
+<script src="https://cdn.rudderlabs.com/v1.1/rudder-analytics.min.js"></script>
