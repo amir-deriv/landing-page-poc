@@ -37,9 +37,10 @@
 
     rudderanalytics.track("Simple track call");
 
-
-    document.querySelector('#signup_redirect_cta').onclick = function () {
-        rudderanalytics.track("Signup Redirect Clicked");
+    document.onload = function () {
+        document.querySelector('#signup_redirect_cta').onclick = ('click', function () {
+            rudderanalytics.track("Simple track call");
+        });
     };
 
 </script>
